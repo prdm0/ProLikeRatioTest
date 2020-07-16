@@ -10,6 +10,7 @@ Nesse trabalho está sendo proposto uma correção na região do teste da Razão
 ## Créditos
 
 - Implementação/Simulações: Prof. Dr. Pedro Rafael D. Marinho. Meu site pessoal poderá ser acessado clicando [**aqui**](https://prdm0.rbind.io/);
-- Discente: Emilia Gonçalves de Lima Neta;
 - Orientação do discente: Prof. Dr. Claudio Javier Tablada;
-- Coorientação do discente: Profa. Dra. Renilma Pereira da Silva.
+- Coorientação do discente: Profa. Dra. Renilma Pereira da Silva;
+- Discente: Emilia Gonçalves de Lima Neta.
+
