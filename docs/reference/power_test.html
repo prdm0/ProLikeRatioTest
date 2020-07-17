@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Page not found (404) • ProLikRatioTest</title>
+<title>Função para o cálculo do poder do teste. — power_test • ProLikRatioTest</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script>
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,13 +33,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Page not found (404)" />
+<meta property="og:title" content="Função para o cálculo do poder do teste. — power_test" />
+<meta property="og:description" content="Função para o cálculo do poder do teste." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +71,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">ProLikRatioTest</a>
+        <a class="navbar-link" href="../index.html">ProLikRatioTest</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1</span>
       </span>
     </div>
@@ -78,13 +79,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -100,23 +101,128 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Page not found (404)</h1>
+    <h1>Função para o cálculo do poder do teste.</h1>
+    
+    <div class="hidden name"><code>power_test.Rd</code></div>
     </div>
 
-Content not found. Please use links in the navbar.
+    <div class="ref-description">
+    <p>Função para o cálculo do poder do teste.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>power_test</span>(
+  <span class='kw'>N</span> <span class='kw'>=</span> <span class='fl'>1000L</span>,
+  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>250L</span>,
+  <span class='no'>n</span>,
+  <span class='no'>f</span>,
+  <span class='no'>sig</span>,
+  <span class='no'>q</span>,
+  <span class='no'>kicks</span>,
+  <span class='no'>par0</span>,
+  <span class='no'>ncores</span>,
+  <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>0.001</span>,
+  <span class='no'>...</span>
+)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>N</th>
+      <td><p>Número de réplicas de Monte-Carlo.</p></td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td><p>Número de réplicas de bootstrap.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>Tamanho da amostra.</p></td>
+    </tr>
+    <tr>
+      <th>sig</th>
+      <td><p>Nível de significância.</p></td>
+    </tr>
+    <tr>
+      <th>q</th>
+      <td><p>Função quantílica para a geração da amostra.</p></td>
+    </tr>
+    <tr>
+      <th>kicks</th>
+      <td><p>Chutes iniciais.</p></td>
+    </tr>
+    <tr>
+      <th>par0</th>
+      <td><p>Lista de parâmetros para serem fixados na hipótese nula.</p></td>
+    </tr>
+    <tr>
+      <th>ncores</th>
+      <td><p>Quantidade de cores utilizados na paralelização.</p></td>
+    </tr>
+    <tr>
+      <th>p</th>
+      <td><p>Valor do parâmetro <strong>p</strong>.</p></td>
+    </tr>
+    <tr>
+      <th>step</th>
+      <td><p>Passos para das integrais calculadas para obtenção do quantil da distribuiçao Chisq-Inf.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Parâmetros para geração da amostra verdadeira.</p></td>
+    </tr>
+    </table>
+
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'># pdf_ew &lt;- function(par, x, var = NULL) {
+#   alpha &lt;- par[1]
+#   sigma &lt;- par[2]
+#   theta &lt;- par[3]
+#
+#   if (is.list(var))
+#     eval(parse(text = paste(var[[1]], " &lt;- ", unlist(var[[2]]), sep = "")))
+#
+#   alpha * theta / sigma * (1 - exp(-(x / sigma) ^ alpha)) ^ (theta - 1) *
+#     exp(-(x / sigma) ^ alpha) * (x / sigma) ^ (alpha - 1)
+# }
+#
+# rew &lt;- function(n, alpha, sigma, theta){
+#   u &lt;- runif(n, 0, 1)
+#   sigma * (-log(1 - u ^ (1 / theta))) ^ (1 / alpha)
+# }
+#
+# set.seed(1L, kind = "L'Ecuyer-CMRG")
+#
+# tictoc::tic()
+# power_test(N = 1e4L,
+#            B = 250L,
+#            n = 150L,
+#            f = pdf_ew,
+#            sig = 0.05,
+#            q = rew,
+#            kicks = c(1, 1, 1),
+#            par0 = list(c("alpha", "theta"), c(1.5, 1.7)),
+#            ncores = 8L,
+#            p = 0.5,
+#            step = 1e-3,
+#            alpha = 1.5,
+#            sigma = 1.5,
+#            theta = 1.7
+#
+# )
+# tictoc::toc()
+</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
-
 
 
       <footer>
