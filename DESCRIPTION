@@ -1,0 +1,17 @@
+Package: LikRatioTest
+Title: Teste da Razao de Verossimilhanca Generalizada
+Version: 0.1
+Authors@R: 
+    person(given = "Pedro Rafael",
+           family = "D. Marinho",
+           role = c("aut", "cre"),
+           email = "pedro.rafael.marinho@gmail.com")
+Description: Realiza o Teste da Razao de Verossimilhanca Generalizada. 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    pbmcapply,
+    tictoc,
+    tibble,
+RoxygenNote: 7.0.2
