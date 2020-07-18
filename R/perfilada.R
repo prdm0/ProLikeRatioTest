@@ -17,10 +17,11 @@ rew <- function(n, alpha, sigma, theta) {
 
 # Unrestricted log-likelihood -----------------------------------
 
+set.seed(0)
+data <- rew(n = 5000L, alpha = 0.5, sigma = 1.5, theta = 1.5) 
 
-data <- rew(n = 5000L, alpha = 3.5, sigma = 1.5, theta = 1.5) 
-
-func <- function(kicks,
+func <- function(f,
+                 kicks,
                  names_par,
                  par_int,
                  data){
@@ -30,13 +31,13 @@ func <- function(kicks,
   
   p_log_lik <- function(a, x) {
     
-    f <- function(par, x) {
-      -sum(log(pdf_ew(par, x, var = list(names_par_int, a))))
+    fn <- function(par, x) {
+      -sum(log(f(par, x, var = list(names_par_int, a))))
     }
     
-    pert <- optim(par = kicks, fn = f, x = data, method = "Nelder-Mead")$par[-(1L:sum(par_int))]
+    pert <- optim(par = kicks, fn = fn, x = data, method = "Nelder-Mead")$par[!par_int]
     
-    -sum(log(pdf_ew(par = a, x, var = list(names_par_pert, pert))))
+    -sum(log(f(par = a, x, var = list(names_par_pert, pert))))
     
   }
   
@@ -45,8 +46,53 @@ func <- function(kicks,
 }
 
 func(
+  f = pdf_ew,
   kicks = c(1, 1, 1),
   names_par = c("alpha", "sigma", "theta"),
-  par_int = c(T, T, F),
+  par_int = c(T, F, T),
+  data = data
+)
+
+
+
+fn1 <- function(par, x) {
+  -sum(log(pdf_ew(par, x)))
+}
+
+optim(par = c(1,1,1), fn = fn1, x = data)
+
+
+# Distribuição Lindley Ponderada ------------------------------------------
+
+pdf_lp <- function(par, x, var = NULL) {
+  mu <- par[1L]
+  beta <- par[2L]
+  
+  if (is.list(var))
+    eval(parse(text = paste(var[[1]], " <- ", unlist(var[[2]]), sep = "")))
+  
+  mu^(beta + 1) / ((mu + beta) * gamma(beta)) * x^(beta - 1) * (1 + x) * exp(-mu * x)
+}
+
+rlp <- function(n, mu, beta) {
+  p <- mu / (mu + beta)
+  
+  p * rgamma(n = n, shape = beta, scale = mu) + (1 - p) * rgamma(n = n, shape = beta + 1, scale = mu)
+}
+
+data <- rlp(n = 1000, mu = 1.5, beta = 5.5)
+
+log_lik <- function(par, x) {
+  -sum(log(pdf_lp(par, x)))
+}
+
+
+optim(par = c(1, 1), fn = log_lik, x = data, method = "Nelder-Mead")
+
+func(
+  f = pdf_lp,
+  kicks = c(1, 1),
+  names_par = c("mu", "beta"),
+  par_int = c(T, F),
   data = data
 )
