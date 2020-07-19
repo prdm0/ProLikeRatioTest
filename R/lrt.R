@@ -1,3 +1,64 @@
+perfiled <- function(f,
+                     kicks,
+                     names_par,
+                     par_int,
+                     data,
+                     ...){
+  
+  names_par_int <- names_par[par_int]
+  names_par_pert <- names_par[!par_int]
+  
+  v <- double(length = length(kicks))
+  
+  emv <- NULL
+  pert <- NULL
+  
+  body(f) %<>% as.list %>%
+    append(quote(if (is.list(var))
+      eval(parse(
+        text = paste(var[[1]], " <- ", unlist(var[[2]]), sep = "")
+      ))), length(body(f)) - 1L) %>%
+    as.call %>%
+    as.expression
+  
+  myoptim <-
+    function(...)
+      tryCatch(
+        expr = optim(...),
+        error = function(e)
+          NA
+      )
+  
+  p_log_lik <- function(a, x) {
+    
+    fn <- function(par, x) {
+      -sum(log(f(par, x, var = list(names_par_int, a))))
+    }
+    
+    result_pert <- myoptim(par = kicks, fn = fn, x = data, ...)
+    
+    if(is.na(result_pert)) return(result_pert)
+    
+    pert <<- result_pert$par[!par_int]
+    
+    v[par_int] <- a
+    
+    -sum(log(f(par = v, x, var = list(names_par_pert, pert))))
+  }
+  
+  result <- myoptim(par = kicks[par_int], fn = p_log_lik, x = data, ...)
+  
+  if(is.na(result)) return(result)
+  
+  emv[par_int] <- result$par
+  emv[!par_int] <- pert
+  result$par <- emv
+  
+  result
+  
+}
+
+
 #' @title Teste da razão de verossimilhança generalizada
 #' @author Pedro Rafael D. Marinho
 #' @description Calcula a estatística da razão de verossimilhança generalizada.
