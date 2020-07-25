@@ -115,8 +115,6 @@ mu_perf_teorico <- emvp_mu(data = data, beta = beta)
 mu_perf_numerico
 mu_perf_teorico
 
-
-
 # Distribuição Exp-Weibull ------------------------------------------------
 pdf_ew <- function(par, x, var = NULL) {
   alpha <- par[1]
